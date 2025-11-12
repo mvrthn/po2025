@@ -3,17 +3,15 @@ package car;
 public class Car {
     private Engine engine;
     private GearBox gearBox;
-    private Clutch clutch;
     private final String model;
     private String regNumber;
     private int vMax;
     private Position position;
     private int velocity;
 
-    public Car(Engine engine, GearBox gearBox, Clutch clutch, String model, String regNumber, int vMax) {
+    public Car(Engine engine, GearBox gearBox, String model, String regNumber, int vMax) {
         this.engine = engine;
         this.gearBox = gearBox;
-        this.clutch = clutch;
         this.model = model;
         this.regNumber = regNumber;
         this.vMax = vMax;
@@ -21,13 +19,13 @@ public class Car {
     }
 
     public void powerOn() {
-        setNeutralGear();
+        gearBox.setGear(0);
         engine.start();
     }
 
     public void powerOff() {
         engine.stop();
-        setNeutralGear();
+        gearBox.setGear(0);
     }
 
     public void goTo(Position target) {
@@ -35,11 +33,11 @@ public class Car {
     }
 
     public int getWeight() {
-        return engine.getWeight() + gearBox.getWeight() + clutch.getWeight();
+        return engine.getWeight() + gearBox.getWeight();
     }
 
     public int getPrice() {
-        return engine.getPrice() + gearBox.getPrice() + clutch.getPrice();
+        return engine.getPrice() + gearBox.getPrice();
     }
 
     public final Position getPosition() {
@@ -48,14 +46,5 @@ public class Car {
 
     public final int getVelocity() {
         return velocity;
-    }
-
-    private void setNeutralGear() {
-        if(gearBox.getGear() == 0) {
-            return;
-        }
-        clutch.depress();
-        gearBox.setGear(0);
-        clutch.release();
     }
 }

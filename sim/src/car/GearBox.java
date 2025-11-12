@@ -1,12 +1,14 @@
 package car;
 
 public class GearBox extends Component {
+    private Clutch clutch;
     private final int numOfGears = 6;
     private int gear = 0;
     private final double[] gearRatios = {4.94, 5.44, 2.84, 1.72, 1.22, 1.0, 0.74};
 
-    public GearBox(String model, int weight, int price) {
+    public GearBox(Clutch clutch, String model, int weight, int price) {
         super(model, weight, price);
+        this.clutch = clutch;
     }
 
     public void gearUp() {
@@ -27,5 +29,15 @@ public class GearBox extends Component {
 
     public double getGearRatio() {
         return gearRatios[gear];
+    }
+
+    @Override
+    public int getWeight() {
+        return super.getWeight() + clutch.getWeight();
+    }
+
+    @Override
+    public int getPrice() {
+        return super.getPrice() + clutch.getPrice();
     }
 }
