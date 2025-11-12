@@ -1,9 +1,12 @@
+package car;
+
 public class GearBox extends Component {
     private final int numOfGears = 6;
     private int gear = 0;
+    private final double[] gearRatios = {4.94, 5.44, 2.84, 1.72, 1.22, 1.0, 0.74};
 
-    GearBox(String producer, String model) {
-        super(producer, model);
+    public GearBox(String model, int weight, int price) {
+        super(model, weight, price);
     }
 
     public void gearUp() {
@@ -20,5 +23,9 @@ public class GearBox extends Component {
 
     public int getGear() {
         return gear;
+    }
+
+    public double getGearRatio() {
+        return gearRatios[gear];
     }
 }

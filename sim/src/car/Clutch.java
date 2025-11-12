@@ -1,3 +1,5 @@
+package car;
+
 public class Clutch extends Component {
     public enum ClutchState {
         released,
@@ -6,8 +8,8 @@ public class Clutch extends Component {
 
     private ClutchState state = ClutchState.released;
 
-    Clutch(String producer, String model) {
-        super(producer, model);
+    public Clutch(String model, int weight, int price) {
+        super(model, weight, price);
     }
 
     public void depress() {
